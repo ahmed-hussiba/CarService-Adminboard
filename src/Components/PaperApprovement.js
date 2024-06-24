@@ -1,25 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { List, ListItem, ListItemText, Typography, Container } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-const PaperApprovement = () => {
+import axios from 'axios';
 
-    const emails = [
-        'user1@gmail.com',
-        'user2@gmail.com',
-        'user3@gmail.com',
-        'user4@gmail.com',
-      ];
-    
+const PaperApprovement = () => {
+    const [serviceProviders,setServiceProviders] = useState([]);
+    // const emails = [
+    //     'user1@gmail.com',
+    //     'user2@gmail.com',
+    //     'user3@gmail.com',
+    //     'user4@gmail.com',
+    //   ];
+
+      useEffect(()=>{
+        axios.get('http://192.168.1.5:8000/api/serviceProvider/unapproved').then((res)=>{
+          setServiceProviders(res.data);
+          // console.log(res.data);
+        })
+      },[])
+
+
+    if(!serviceProviders)
+        return <p> loading.....</p>
   return (
     <Container>
       <Typography variant="h4" gutterBottom>
         Paper Approval
       </Typography>
       <List>
-        {emails.map((email) => (
-          <ListItem button key={email} component={Link} to={`/paper-approval/${email}`}>
-            <ListItemText primary={email} />
+        {serviceProviders.map((sp) => (
+          <ListItem button key={sp._id} component={Link} to={`/paper-approval/${sp.email}`}>
+            <ListItemText primary={sp.email} />
           </ListItem>
         ))}
       </List>

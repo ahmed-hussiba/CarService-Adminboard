@@ -1,19 +1,16 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Container, Typography, Grid, Card, CardMedia, Button, Box, Dialog, DialogContent, DialogActions } from '@mui/material';
-
-const pictures = [
-  'https://via.placeholder.com/150',
-  'https://via.placeholder.com/150',
-  'https://via.placeholder.com/150',
-  'https://via.placeholder.com/150',
-];
+import { storage } from '../firebase'
+import {ref,listAll,getDownloadURL} from 'firebase/storage'
+import axios from 'axios';
 
 const EmailDetails = () => {
   const { email } = useParams();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [selectedPicture, setSelectedPicture] = useState('');
-
+  const [imageList,setImageList] = useState([])
   const handleOpenModal = (pic) => {
     setSelectedPicture(pic);
     setOpen(true);
@@ -23,13 +20,47 @@ const EmailDetails = () => {
     setOpen(false);
   };
 
+  const approveHandler = ()=>{
+    axios.post('http://192.168.1.5:8000/api/serviceProvider/updateApprovalStatus',{email,status:"approved"}).then((res)=>{
+      console.log(res.status);
+    })
+    .catch((err)=>{console.log(err);})
+    navigate('/paper-approval')
+
+  }
+
+  const declineHandler = ()=>{
+    axios.post('http://192.168.1.5:8000/api/serviceProvider/updateApprovalStatus',{email,status:"rejected"}).then((res)=>{
+      console.log(res.status);
+    })
+    .catch((err)=>{console.log(err);})
+    navigate('/paper-approval')
+
+  }
+
+  const imageListRef = ref(storage,'uploads/')
+  useEffect(()=>{
+    listAll(imageListRef).then((response)=>{
+      response.items.forEach((item)=>{
+        if(item.name.split('_')[0] == email.split('.')[0] )
+          {
+            getDownloadURL(item).then((url)=>{
+              setImageList((prev)=>[...prev,url]);
+            })
+          }
+          else return
+      })
+    })
+  },[])
+
+
   return (
     <Container>
       <Typography variant="h4" gutterBottom>
         Approve Pictures for {email}
       </Typography>
       <Grid container spacing={2}>
-        {pictures.map((pic, index) => (
+        {imageList.map((pic, index) => (
           <Grid item xs={12} sm={6} md={3} key={index}>
             <Card>
               <CardMedia
@@ -57,14 +88,14 @@ const EmailDetails = () => {
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2, mt: 2 }}>
         <Button 
           variant='contained'
-          onClick={() => console.log("Approved")}
+          onClick={approveHandler}
           sx={{ backgroundColor: 'green', color: 'white' }}
         >
           Approve
         </Button>
         <Button 
           variant='contained'
-          onClick={() => console.log("Declined")}
+          onClick={declineHandler}
           sx={{ backgroundColor: 'red', color: 'white' }}
         >
           Decline
