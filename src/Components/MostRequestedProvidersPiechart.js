@@ -8,7 +8,7 @@ export default function MostRequestedProvidersPiechart() {
   const [analysisData, setAnalysisData] = useState();
 
   useEffect(() => {
-    axios.get("http://192.168.1.2:8000/api/analysis").then((data) => {
+    axios.get("http://192.168.1.4:8000/api/analysis").then((data) => {
       let servicesArr = data.data.providers;
       console.log(servicesArr);
       setAnalysisData(servicesArr);

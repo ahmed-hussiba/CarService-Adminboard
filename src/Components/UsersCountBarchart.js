@@ -10,12 +10,12 @@ export function UsersCountBarchart() {
   const [ProvidersCount, setProvidersCount] = React.useState()
 
   React.useEffect(() => {
-    axios.get("http://192.168.1.2:8000/api/user/count").then((res) => {
+    axios.get("http://192.168.1.4:8000/api/user/count").then((res) => {
       console.log(res.data);
       setConsumersCount(res.data);
     })
 
-    axios.get("http://192.168.1.2:8000/api/serviceProvider/count").then((res) => {
+    axios.get("http://192.168.1.4:8000/api/serviceProvider/count").then((res) => {
       console.log(res.data);
       setProvidersCount(res.data);
     })
@@ -26,7 +26,7 @@ export function UsersCountBarchart() {
   return (
     <Paper sx={{display:"flex",justifyContent:"center",flexDirection:"column",width:"40%"}}>
         <Typography variant="h6" gutterBottom sx={{width:"100%",textAlign:"center"}}>
-            Most Requested Providers
+            Number Of Consumers And Providers
         </Typography>
     <BarChart
       xAxis={[{ scaleType: "band", data: [""] }]}

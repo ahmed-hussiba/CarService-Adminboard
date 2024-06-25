@@ -6,7 +6,7 @@ import { Paper, Typography } from '@mui/material';
 export default function ServicesPerDayLineChart() {
   const [requests,setRequests] =  React.useState();
   React.useEffect(() => {
-    axios.get("http://192.168.1.2:8000/api/analysis").then((data) => {
+    axios.get("http://192.168.1.4:8000/api/analysis").then((data) => {
       let datesArr = data.data.servicesWithDates;
       console.log(datesArr);
       let obj = {};
@@ -21,7 +21,7 @@ export default function ServicesPerDayLineChart() {
   return (
     <Paper sx={{display:"flex",justifyContent:"center",flexDirection:"column",width:"40%"}}>
         <Typography variant="h6" gutterBottom sx={{width:"100%",textAlign:"center"}}>
-            Most Requested Providers
+            Number Of Services Per Day
         </Typography>
     <LineChart
       xAxis={[{ scaleType:"point", data: Object.keys(requests) }]}

@@ -7,7 +7,7 @@ export default function MostRequiredServicesLineChart() {
     const [analysisData,setAnalysisData] = React.useState();
 
     React.useEffect(()=>{
-        axios.get('http://192.168.1.2:8000/api/analysis').then((data)=>{
+        axios.get('http://192.168.1.4:8000/api/analysis').then((data)=>{
             let servicesArr = data.data.services
             // console.log(servicesArr);
             setAnalysisData(servicesArr)
@@ -18,7 +18,7 @@ export default function MostRequiredServicesLineChart() {
   return (
         <Paper sx={{display:"flex",justifyContent:"center",flexDirection:"column",width:"40%",}}>
         <Typography variant="h6" gutterBottom sx={{width:"100%",textAlign:"center"}}>
-            Most Requested Providers
+            Most Requested Services
         </Typography>
     <LineChart
       xAxis={[{scaleType:"point", data: analysisData.map((item)=>item.name)}]}
