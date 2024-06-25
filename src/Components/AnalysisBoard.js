@@ -1,15 +1,13 @@
 import React from 'react';
 import { Typography, Container } from '@mui/material';
+import {UsersCountBarchart} from './Charts/UsersCountBarchart'
+import MostRequestedProvidersPiechart from './Charts/MostRequestedProvidersPiechart';
 
 const AnalysisBoard = () => {
   return (
-    <Container>
-      <Typography variant="h4" gutterBottom>
-        Analysis
-      </Typography>
-      <Typography variant="body1">
-        This is the Analysis component.
-      </Typography>
+    <Container sx={{display: 'flex'}}>
+      <UsersCountBarchart />
+      <MostRequestedProvidersPiechart />
     </Container>
   );
 };
