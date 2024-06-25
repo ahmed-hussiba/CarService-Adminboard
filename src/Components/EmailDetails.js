@@ -21,7 +21,7 @@ const EmailDetails = () => {
   };
 
   const approveHandler = ()=>{
-    axios.post('http://192.168.1.5:8000/api/serviceProvider/updateApprovalStatus',{email,status:"approved"}).then((res)=>{
+    axios.post('http://192.168.1.2:8000/api/serviceProvider/updateApprovalStatus',{email,status:"approved"}).then((res)=>{
       console.log(res.status);
     })
     .catch((err)=>{console.log(err);})
@@ -30,7 +30,7 @@ const EmailDetails = () => {
   }
 
   const declineHandler = ()=>{
-    axios.post('http://192.168.1.5:8000/api/serviceProvider/updateApprovalStatus',{email,status:"rejected"}).then((res)=>{
+    axios.post('http://192.168.1.2:8000/api/serviceProvider/updateApprovalStatus',{email,status:"rejected"}).then((res)=>{
       console.log(res.status);
     })
     .catch((err)=>{console.log(err);})

@@ -1,16 +1,29 @@
 import React from 'react';
 import { Typography, Container } from '@mui/material';
+import MostRequiredServicesLineChart from './mostRequiredServicesLineChart';
+import MostRequestedProvidersPiechart from './MostRequestedProvidersPiechart';
+import { UsersCountBarchart } from './UsersCountBarchart';
+import ServicesPerDayLineChart from './ServicesPerDayLineChart';
+
 
 const AnalysisBoard = () => {
   return (
-    <Container>
-      <Typography variant="h4" gutterBottom>
-        Analysis
+    <>
+      <Typography variant="h4" sx={{textAlign:"center",marginBottom:"5rem",marginTop:"-3rem"}}>
+        Analysis Board
       </Typography>
-      <Typography variant="body1">
-        This is the Analysis component.
-      </Typography>
-    </Container>
+      
+      <Container sx={{display:"flex",marginBottom:"5rem",justifyContent:"space-evenly"}}>
+        <MostRequiredServicesLineChart></MostRequiredServicesLineChart>
+        <MostRequestedProvidersPiechart></MostRequestedProvidersPiechart>
+      </Container>
+      <Container  sx={{display:"flex",marginBottom:"5rem",justifyContent:"space-evenly"}}>
+
+      <UsersCountBarchart></UsersCountBarchart>
+      <ServicesPerDayLineChart></ServicesPerDayLineChart>
+      </Container>
+
+    </>
   );
 };
 

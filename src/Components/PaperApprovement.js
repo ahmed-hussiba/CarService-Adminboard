@@ -14,7 +14,7 @@ const PaperApprovement = () => {
     //   ];
 
       useEffect(()=>{
-        axios.get('http://192.168.1.5:8000/api/serviceProvider/unapproved').then((res)=>{
+        axios.get('http://192.168.1.2:8000/api/serviceProvider/unapproved').then((res)=>{
           setServiceProviders(res.data);
           // console.log(res.data);
         })
