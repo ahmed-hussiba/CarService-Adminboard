@@ -10,12 +10,12 @@ export function UsersCountBarchart() {
   const [ProvidersCount, setProvidersCount] = React.useState()
 
   React.useEffect(() => {
-    axios.get("http://192.168.1.4:8000/api/user/count").then((res) => {
+    axios.get("http://localhost:8000/api/user/count").then((res) => {
       console.log(res.data);
       setConsumersCount(res.data);
     })
 
-    axios.get("http://192.168.1.4:8000/api/serviceProvider/count").then((res) => {
+    axios.get("http://localhost:8000/api/serviceProvider/count").then((res) => {
       console.log(res.data);
       setProvidersCount(res.data);
     })

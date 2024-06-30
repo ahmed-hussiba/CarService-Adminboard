@@ -21,7 +21,7 @@ const EmailDetails = () => {
   };
 
   const approveHandler = ()=>{
-    axios.post('http://192.168.1.4:8000/api/serviceProvider/updateApprovalStatus',{email,status:"approved"}).then((res)=>{
+    axios.post('http://localhost:8000/api/serviceProvider/updateApprovalStatus',{email,status:"approved"}).then((res)=>{
       console.log(res.status);
     })
     .catch((err)=>{console.log(err);})
@@ -30,7 +30,7 @@ const EmailDetails = () => {
   }
 
   const declineHandler = ()=>{
-    axios.post('http://192.168.1.4:8000/api/serviceProvider/updateApprovalStatus',{email,status:"rejected"}).then((res)=>{
+    axios.post('http://localhost:8000/api/serviceProvider/updateApprovalStatus',{email,status:"rejected"}).then((res)=>{
       console.log(res.status);
     })
     .catch((err)=>{console.log(err);})
@@ -42,7 +42,7 @@ const EmailDetails = () => {
   useEffect(()=>{
     listAll(imageListRef).then((response)=>{
       response.items.forEach((item)=>{
-        if(item.name.split('_')[0] == email.split('.')[0] )
+        if(item.name.split('_')[0] === email.split('.')[0] )
           {
             getDownloadURL(item).then((url)=>{
               setImageList((prev)=>[...prev,url]);

@@ -6,6 +6,7 @@ import Sidebar from '../Components/Sidebar';
 import PaperApprovement from '../Components/PaperApprovement';
 import AnalysisBoard from '../Components/AnalysisBoard';
 import EmailDetails from '../Components/EmailDetails';
+import ComplaintsPanel from '../Components/ComplaintsPanel';
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
             <Route path="/analysis" element={<AnalysisBoard />} />
             <Route path="/paper-approval" element={<PaperApprovement />} />
             <Route path="/paper-approval/:email" element={<EmailDetails />} />
+            <Route path="/complaints" element={<ComplaintsPanel />} />
+            
           </Routes>
         </main>
       </div>

@@ -6,7 +6,7 @@ import { Paper, Typography } from '@mui/material';
 export default function ServicesPerDayLineChart() {
   const [requests,setRequests] =  React.useState();
   React.useEffect(() => {
-    axios.get("http://192.168.1.4:8000/api/analysis").then((data) => {
+    axios.get("http://localhost:8000/api/analysis").then((data) => {
       let datesArr = data.data.servicesWithDates;
       console.log(datesArr);
       let obj = {};

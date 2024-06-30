@@ -7,7 +7,7 @@ export default function MostRequiredServicesLineChart() {
     const [analysisData,setAnalysisData] = React.useState();
 
     React.useEffect(()=>{
-        axios.get('http://192.168.1.4:8000/api/analysis').then((data)=>{
+        axios.get('http://localhost:8000/api/analysis').then((data)=>{
             let servicesArr = data.data.services
             // console.log(servicesArr);
             setAnalysisData(servicesArr)

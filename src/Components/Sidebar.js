@@ -42,6 +42,12 @@ const Sidebar = () => {
           </ListItemIcon>
           <ListItemText primary="Paper Approval" />
         </ListItem>
+        <ListItem button component={Link} to="/complaints">
+          <ListItemIcon>
+            <Description />
+          </ListItemIcon>
+          <ListItemText primary="Complaints Panel" />
+        </ListItem>
       </List>
     </Drawer>
   );
