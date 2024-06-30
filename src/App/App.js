@@ -17,6 +17,7 @@ function App() {
         <main style={{ flexGrow: 1, padding: '24px' }}>
           <Toolbar />
           <Routes>
+            <Route path="/" element={<AnalysisBoard />} />
             <Route path="/analysis" element={<AnalysisBoard />} />
             <Route path="/paper-approval" element={<PaperApprovement />} />
             <Route path="/paper-approval/:email" element={<EmailDetails />} />
